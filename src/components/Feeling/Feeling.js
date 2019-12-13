@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class Feeling extends Component {
+
+    // On click, routes to Support Component
+    goToUnderstand = () => {        
+        this.props.history.push('/understanding');
+    }
+
     render() {
         return (
             <>
+                <button onClick={this.goToUnderstand}>Next</button>
             </>
         );
     }
 }
 
-export default Feeling;
+export default withRouter(Feeling);
