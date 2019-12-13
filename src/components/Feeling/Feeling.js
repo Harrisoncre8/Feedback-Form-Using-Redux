@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class Feeling extends Component {
 
-    // On click, routes to Support Component
+    // On click, routes to Understanding Component
     goToUnderstand = () => {        
         this.props.history.push('/understanding');
     }
