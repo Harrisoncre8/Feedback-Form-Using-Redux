@@ -11,12 +11,8 @@ class Comment extends Component {
     // On click, send to redux, routes to Review Component
     goToReview = (event) => {
         event.preventDefault();
-        if(this.state.comment === ''){
-            alert('Comment form cannot be blank.')
-        } else {
-            this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state });
-            this.props.history.push('/review');
-        }
+        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state });
+        this.props.history.push('/review');
     }
 
     // Change local state in Support Component
