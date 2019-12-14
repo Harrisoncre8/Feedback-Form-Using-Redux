@@ -11,10 +11,10 @@ class Feeling extends Component {
     // On click, send to redux, routes to Understanding Component
     goToUnderstand = (event) => {  
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state });
         if(this.state.feelings === ''){
             alert('Feeling form cannot be left blank.')
         } else {
+            this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state });
             this.props.history.push('/understanding');
         }
     }

@@ -11,10 +11,10 @@ class Support extends Component {
     // On click, routes to Comment Component
     goToComment = (event) => {        
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state });
         if(this.state.support === ''){
             alert('Support form cannot be blank.')
         } else {
+            this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state });
             this.props.history.push('/comment');
         }
     }

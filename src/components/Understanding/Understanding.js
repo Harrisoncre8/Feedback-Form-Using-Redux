@@ -11,10 +11,10 @@ class Understanding extends Component {
     // On click, send to redux, routes to Supprt Component
     goToSupport = (event) => {        
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_UNDERSTAND', payload: this.state });
         if(this.state.understand === ''){
             alert('Understanding form cannot be blank.')
         } else {
+            this.props.dispatch({ type: 'ADD_UNDERSTAND', payload: this.state });
             this.props.history.push('/support');
         }
     }

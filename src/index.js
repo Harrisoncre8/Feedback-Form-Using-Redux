@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 // Import redux
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feelingReducer = (state = [], action) => {
-    if( action.type === 'ADD_FEELINGS'){
+const commentReducer = (state = [], action) => {
+    if( action.type === 'ADD_COMMENT'){
         return [...state, action.payload];
     }
     return state;
 }
 
-const understandReducer = (state = [], action) => {
-    if( action.type === 'ADD_UNDERSTAND'){
+const feelingReducer = (state = [], action) => {
+    if( action.type === 'ADD_FEELINGS'){
         return [...state, action.payload];
     }
     return state;
@@ -29,11 +29,19 @@ const supportReducer = (state = [], action) => {
     return state;
 }
 
+const understandReducer = (state = [], action) => {
+    if( action.type === 'ADD_UNDERSTAND'){
+        return [...state, action.payload];
+    }
+    return state;
+}
+
 const storeInstance = createStore(
     combineReducers({
+        commentReducer,
         feelingReducer,
+        supportReducer,
         understandReducer,
-        supportReducer
     }),
     applyMiddleware(logger),
 );
