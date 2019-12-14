@@ -8,7 +8,7 @@ class Feeling extends Component {
         feelings: ''
     }
 
-    // On click, routes to Understanding Component
+    // On click, send to redux, routes to Understanding Component
     goToUnderstand = (event) => {  
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state });
