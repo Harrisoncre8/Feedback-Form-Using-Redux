@@ -13,7 +13,7 @@ class Feeling extends Component {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state });
         if(this.state.feelings === ''){
-            alert('Please tell me how you feel')
+            alert('Feeling form cannot be left blank.')
         } else {
             this.props.history.push('/understanding');
         }

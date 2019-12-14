@@ -1,19 +1,47 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Support extends Component {
 
-     // On click, routes to Comment Component
-     goToComment = () => {        
-        this.props.history.push('/comment');
+    state = {
+        support: ''
+    }
+
+    // On click, routes to Comment Component
+    goToComment = (event) => {        
+        event.preventDefault();
+        this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state });
+        if(this.state.support === ''){
+            alert('Support form cannot be blank.')
+        } else {
+            this.props.history.push('/comment');
+        }
+    }
+
+    // Change local state in Support Component
+    handleChange = (event, propertyName)=>{
+        this.setState({
+          ...this.state,
+          [propertyName]: event.target.value
+        })
     }
 
     render() {
         return (
-            <>
-                <button onClick={this.goToComment}>Next</button>
-            </>
+            <form onSubmit={this.goToComment}>
+                    <h2>How well are you being supported?</h2>
+                    <input
+                        type='number' 
+                        placeholder='Support?' 
+                        max='5'
+                        value={this.state.support} 
+                        onChange={(event)=>this.handleChange(event, 'support')} 
+                    />
+                    <button type='submit'>Next</button>
+            </form>
         );
     }
 }
 
-export default Support;
+export default connect()(withRouter(Support));
