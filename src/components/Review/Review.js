@@ -12,6 +12,10 @@ class Review extends Component {
         comment: this.props.reduxState.commentReducer
     }
 
+    backToComment = () => {
+        this.props.history.push('/comment');
+    }
+
     // On submit, send to DB
     handleSubmit = (event) => {
         event.preventDefault();
@@ -39,6 +43,7 @@ class Review extends Component {
                     <p>Comments: {this.props.reduxState.commentReducer}</p>
                     <button type="submit">Submit</button>
                 </form>
+                <button onClick={this.backToComment}>Back</button>
             </section>
         );
     }

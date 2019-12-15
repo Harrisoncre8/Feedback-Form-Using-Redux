@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
 import { connect } from 'react-redux';
 // React Router
 import { HashRouter as Router, Route} from 'react-router-dom';
@@ -10,27 +9,9 @@ import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 import Review from '../Review/Review';
 import Success from '../Success/Success';
+import Admin from '../Admin/Admin';
 
 class App extends Component {
-
-  componentDidMount(){
-    this.getFeedback()
-  }
-
-  // GET feedback from server
-  getFeedback = () => {
-    axios.get('/feedback')
-    .then( response => {
-        console.log('Back from server with:', response.data);
-        // Dispatch this to redux state
-        this.props.dispatch({
-            type: 'SET_FEEDBACK', 
-            payload: response.data})
-    })
-    .catch( error => {
-            console.log('Error getting feedback', error);
-    })
-  }
 
   render() {
     return (
@@ -48,6 +29,7 @@ class App extends Component {
             <Route path="/comment" component={ Comment } />
             <Route path="/review" component={ Review } />
             <Route path="/success" component={ Success } />
+            <Route path="/admin" component={ Admin } />
           </div> 
         </Router>
       </div>
