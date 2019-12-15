@@ -22,7 +22,18 @@ class Admin extends Component {
             })
         })
         .catch( error => {
-                console.log('Error getting feedback', error);
+            console.log('Error getting feedback', error);
+        })
+    }
+
+    // DELETE feedback in DB
+    deleteFeedback = (idToDelete) => {
+        axios.delete(`/feedback/${idToDelete}`)
+        .then(response => {
+            this.getFeedback();
+        })
+        .catch( error => {
+            console.log('Error deleting item', error);
         })
     }
 
@@ -36,6 +47,7 @@ class Admin extends Component {
                             <th>Comprehension</th>
                             <th>Support</th>
                             <th>Comments</th>
+                            <th>Flag</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -46,7 +58,11 @@ class Admin extends Component {
                                         <td>{value.understanding}</td>
                                         <td>{value.support}</td>
                                         <td>{value.comments}</td>
-                                        <td><button>Delete</button></td>
+                                        <td><button>Flag</button></td>
+                                        <td><button 
+                                            onClick={ () => this.deleteFeedback(value.id)}>
+                                            Delete</button>
+                                        </td>
                                    </tr>)
                         })}
                     </tbody>
