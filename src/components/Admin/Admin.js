@@ -26,15 +26,17 @@ class Admin extends Component {
         })
     }
 
-    // DELETE feedback in DB
+    // DELETE feedback in DB with confirmation
     deleteFeedback = (idToDelete) => {
-        axios.delete(`/feedback/${idToDelete}`)
+        if(window.confirm('Are you sure you want to delete this feedback?')){
+            axios.delete(`/feedback/${idToDelete}`)
         .then(response => {
             this.getFeedback();
         })
         .catch( error => {
             console.log('Error deleting item', error);
         })
+        }
     }
 
     render(){
