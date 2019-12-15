@@ -24,14 +24,6 @@ const feelingReducer = (state = 0, action) => {
     return state;
 }
 
-// Set redux state to data from server
-const setFeedbackReducer = (state = [], action) => {
-    if( action.type === 'SET_FEEDBACK'){
-        return  [...state, action.payload];
-    }
-    return state;
-}
-
 // Set redux state to user support input
 const supportReducer = (state = 0, action) => {
     if( action.type === 'ADD_SUPPORT'){
@@ -52,7 +44,6 @@ const storeInstance = createStore(
     combineReducers({
         commentReducer,
         feelingReducer,
-        setFeedbackReducer,
         supportReducer,
         understandReducer,
     }),
