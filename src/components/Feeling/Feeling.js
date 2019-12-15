@@ -14,7 +14,7 @@ class Feeling extends Component {
         if(this.state.feeling === ''){
             alert('Feeling form cannot be left blank.')
         } else {
-            this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state.feeling });
+            this.props.dispatch({ type: 'ADD_FEELING', payload: this.state.feeling });
             this.props.history.push('/understanding');
         }
     }

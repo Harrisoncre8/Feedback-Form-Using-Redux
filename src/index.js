@@ -18,7 +18,7 @@ const commentReducer = (state = '', action) => {
 
 // Changing redux state to user feeling input
 const feelingReducer = (state = 0, action) => {
-    if( action.type === 'ADD_FEELINGS'){
+    if( action.type === 'ADD_FEELING'){
         return action.payload;
     }
     return state;

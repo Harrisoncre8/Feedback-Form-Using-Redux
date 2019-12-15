@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 
 class Review extends Component {
     
-    
     state = {
         feeling: this.props.reduxState.feelingReducer,
         understand: this.props.reduxState.understandReducer,
@@ -20,6 +19,7 @@ class Review extends Component {
         axios.post('/feedback', this.state)
         .then( response => {
             console.log('Adding feedback', this.state);
+            this.props.history.push('/success');
         })
         .catch( error => {
             console.log('Error with POST', error);
