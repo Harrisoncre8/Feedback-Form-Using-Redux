@@ -8,30 +8,42 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const commentReducer = (state = [], action) => {
+// Changing redux state to user comment input
+const commentReducer = (state = '', action) => {
     if( action.type === 'ADD_COMMENT'){
-        return [...state, action.payload];
+        return action.payload;
     }
     return state;
 }
 
-const feelingReducer = (state = [], action) => {
+// Changing redux state to user feeling input
+const feelingReducer = (state = 0, action) => {
     if( action.type === 'ADD_FEELINGS'){
-        return [...state, action.payload];
+        return action.payload;
     }
     return state;
 }
 
-const supportReducer = (state = [], action) => {
+// Array of data from server
+const setFeedbackReducer = (state = [], action) => {
+    if( action.type === 'SET_FEEDBACK'){
+        return  [...state, action.payload];
+    }
+    return state;
+}
+
+// Changing redux state to user support input
+const supportReducer = (state = 0, action) => {
     if( action.type === 'ADD_SUPPORT'){
-        return [...state, action.payload];
+        return action.payload;
     }
     return state;
 }
 
-const understandReducer = (state = [], action) => {
+// Changing redux state to user understand input
+const understandReducer = (state = 0, action) => {
     if( action.type === 'ADD_UNDERSTAND'){
-        return [...state, action.payload];
+        return action.payload;
     }
     return state;
 }
@@ -40,6 +52,7 @@ const storeInstance = createStore(
     combineReducers({
         commentReducer,
         feelingReducer,
+        setFeedbackReducer,
         supportReducer,
         understandReducer,
     }),

@@ -5,25 +5,24 @@ import { connect } from 'react-redux';
 class Feeling extends Component {
 
     state = {
-        feelings: ''
+        feeling: ''
     }
 
     // On click, send to redux, routes to Understanding Component
     goToUnderstand = (event) => {  
         event.preventDefault();
-        if(this.state.feelings === ''){
+        if(this.state.feeling === ''){
             alert('Feeling form cannot be left blank.')
         } else {
-            this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state });
+            this.props.dispatch({ type: 'ADD_FEELINGS', payload: this.state.feeling });
             this.props.history.push('/understanding');
         }
     }
 
     // Change local state in Feeling Component
-    handleChange = (event, propertyName)=>{
+    handleChange = (event)=>{
         this.setState({
-          ...this.state,
-          [propertyName]: event.target.value
+          feeling: event.target.value
         })
     }
     
@@ -35,8 +34,8 @@ class Feeling extends Component {
                     type='number' 
                     placeholder='Feeling?' 
                     max='5'
-                    value={this.state.feelings} 
-                    onChange={(event)=>this.handleChange(event, 'feelings')} 
+                    value={this.state.feeling} 
+                    onChange={(event)=>this.handleChange(event)} 
                 />
                 <button type='submit'>Next</button>
             </form>

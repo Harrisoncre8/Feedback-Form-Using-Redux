@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Feeling from '../Feeling/Feeling';
+import axios from 'axios';
+import { connect } from 'react-redux';
 // React Router
 import { HashRouter as Router, Route} from 'react-router-dom';
 import Support from '../Support/Support';
@@ -9,6 +11,26 @@ import Comment from '../Comment/Comment';
 import Review from '../Review/Review';
 
 class App extends Component {
+
+  componentDidMount(){
+    this.getFeedback()
+  }
+
+  // GET feedback from server
+  getFeedback = () => {
+    axios.get('/feedback')
+    .then( response => {
+        console.log('Back from server with:', response.data);
+        // Dispatch this to redux state
+        this.props.dispatch({
+            type: 'SET_FEEDBACK', 
+            payload: response.data})
+    })
+    .catch( error => {
+            console.log('Error getting feedback', error);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -31,4 +53,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

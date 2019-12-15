@@ -14,16 +14,15 @@ class Understanding extends Component {
         if(this.state.understand === ''){
             alert('Understanding form cannot be blank.')
         } else {
-            this.props.dispatch({ type: 'ADD_UNDERSTAND', payload: this.state });
+            this.props.dispatch({ type: 'ADD_UNDERSTAND', payload: this.state.understand });
             this.props.history.push('/support');
         }
     }
 
     // Change local state in Understanding Component
-    handleChange = (event, propertyName)=>{
+    handleChange = (event)=>{
         this.setState({
-          ...this.state,
-          [propertyName]: event.target.value
+          understand: event.target.value
         })
     }
 
@@ -36,7 +35,7 @@ class Understanding extends Component {
                         placeholder='Understanding?' 
                         max='5'
                         value={this.state.understand} 
-                        onChange={(event)=>this.handleChange(event, 'understand')} 
+                        onChange={(event)=>this.handleChange(event)} 
                     />
                     <button type='submit'>Next</button>
                 </form>

@@ -11,15 +11,14 @@ class Comment extends Component {
     // On click, send to redux, routes to Review Component
     goToReview = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state });
+        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state.comment });
         this.props.history.push('/review');
     }
 
     // Change local state in Support Component
-    handleChange = (event, propertyName)=>{
+    handleChange = (event)=>{
         this.setState({
-          ...this.state,
-          [propertyName]: event.target.value
+         comment: event.target.value
         })
     }
 
@@ -31,7 +30,7 @@ class Comment extends Component {
                     type='text' 
                     placeholder='Comments' 
                     value={this.state.comment} 
-                    onChange={(event)=>this.handleChange(event, 'comment')} 
+                    onChange={(event)=>this.handleChange(event)} 
                 />
                 <button type='submit'>Next</button>
             </form>

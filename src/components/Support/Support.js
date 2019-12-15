@@ -14,16 +14,15 @@ class Support extends Component {
         if(this.state.support === ''){
             alert('Support form cannot be blank.')
         } else {
-            this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state });
+            this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state.support });
             this.props.history.push('/comment');
         }
     }
 
     // Change local state in Support Component
-    handleChange = (event, propertyName)=>{
+    handleChange = (event)=>{
         this.setState({
-          ...this.state,
-          [propertyName]: event.target.value
+          support: event.target.value
         })
     }
 
@@ -36,7 +35,7 @@ class Support extends Component {
                         placeholder='Support?' 
                         max='5'
                         value={this.state.support} 
-                        onChange={(event)=>this.handleChange(event, 'support')} 
+                        onChange={(event)=>this.handleChange(event)} 
                     />
                     <button type='submit'>Next</button>
             </form>
