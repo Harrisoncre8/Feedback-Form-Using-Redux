@@ -8,6 +8,12 @@ class Understanding extends Component {
         understand: ''
     }
 
+    // On click, send to redux, back to Feeling Component
+    backToFeeling = () => {        
+            this.props.dispatch({ type: 'ADD_UNDERSTAND', payload: this.state.understand });
+            this.props.history.push('/');
+    }
+
     // On click, send to redux, routes to Supprt Component
     goToSupport = (event) => {        
         event.preventDefault();
@@ -28,6 +34,7 @@ class Understanding extends Component {
 
     render() {
         return (
+            <section>
                 <form onSubmit={this.goToSupport}>
                     <h2>How well are you understanding the content?</h2>
                     <input
@@ -39,6 +46,8 @@ class Understanding extends Component {
                     />
                     <button type='submit'>Next</button>
                 </form>
+                <button onClick={this.backToFeeling}>Back</button>
+            </section>
         );
     }
 }

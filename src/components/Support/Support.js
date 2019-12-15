@@ -8,6 +8,12 @@ class Support extends Component {
         support: ''
     }
 
+    // On click, send to redux, back to Understanding Component
+    backToUnderstand = () => {        
+            this.props.dispatch({ type: 'ADD_SUPPORT', payload: this.state.support });
+            this.props.history.push('/understanding');
+    }
+
     // On click, routes to Comment Component
     goToComment = (event) => {        
         event.preventDefault();
@@ -28,17 +34,20 @@ class Support extends Component {
 
     render() {
         return (
-            <form onSubmit={this.goToComment}>
+            <section>
+                <form onSubmit={this.goToComment}>
                     <h2>How well are you being supported?</h2>
-                    <input
-                        type='number' 
-                        placeholder='Support?' 
-                        max='5'
-                        value={this.state.support} 
-                        onChange={(event)=>this.handleChange(event)} 
-                    />
-                    <button type='submit'>Next</button>
-            </form>
+                        <input
+                            type='number' 
+                            placeholder='Support?' 
+                            max='5'
+                            value={this.state.support} 
+                            onChange={(event)=>this.handleChange(event)} 
+                        />
+                        <button type='submit'>Next</button>
+                </form>
+                <button onClick={this.backToUnderstand}>Back</button>
+            </section>
         );
     }
 }
