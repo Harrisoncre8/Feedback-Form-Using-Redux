@@ -39,6 +39,17 @@ class Admin extends Component {
         }
     }
 
+      // PUT flag feedback from server
+      flagFeedback = (feedback) => {
+        axios.put(`/feedback/flagged/${feedback}`)
+        .then(response => {
+          this.getFeedback();
+        })
+        .catch( error => {
+          console.log(`Error updating item`, error);
+        })
+    }
+
     render(){
         return(
             <section>
@@ -49,6 +60,7 @@ class Admin extends Component {
                             <th>Comprehension</th>
                             <th>Support</th>
                             <th>Comments</th>
+                            <th>Flag Status</th>
                             <th>Flag</th>
                             <th>Delete</th>
                         </tr>
@@ -60,7 +72,11 @@ class Admin extends Component {
                                         <td>{value.understanding}</td>
                                         <td>{value.support}</td>
                                         <td>{value.comments}</td>
-                                        <td><button>Flag</button></td>
+                                        <td>{value.flagged.toString()}</td>
+                                        <td><button 
+                                        onClick={ () => this.flagFeedback(value.id, value.flagged)}>
+                                            Flag</button>
+                                        </td>
                                         <td><button 
                                             onClick={ () => this.deleteFeedback(value.id)}>
                                             Delete</button>

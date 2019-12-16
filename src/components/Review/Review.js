@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+// Material UI
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 class Review extends Component {
     
@@ -41,9 +44,10 @@ class Review extends Component {
                     <p>Understanding: {this.props.reduxState.understandReducer}</p>
                     <p>Support: {this.props.reduxState.supportReducer}</p>
                     <p>Comments: {this.props.reduxState.commentReducer}</p>
-                    <button type="submit">Submit</button>
+                    <Button variant="contained" color="primary" size="small" type="submit">Submit</Button>
                 </form>
-                <button onClick={this.backToComment}>Back</button>
+                <br/>
+                <Button variant="contained" color="primary" size="small" onClick={this.backToComment}>Back</Button>
             </section>
         );
     }
@@ -53,22 +57,4 @@ const putPropsOnReduxState = (reduxState) => ({
     reduxState
 })
 
-export default withRouter(connect(putPropsOnReduxState)(Review));
-
-    // For Admin page:
-    // {this.props.reduxState.setFeedbackReducer.map( (value, i) => {
-    //     return(<p key={i} value={value}>Feelings: {value.feeling}</p>)
-    //         })}
-
-    // feelings: this.props.reduxState.feedbackReducer.map( (value, i) => {
-    //     return(<p key={i} value={value}>Feelings: {value.feelings}</p>)
-    // }),
-    // understand: this.props.reduxState.feedbackReducer.map( (value, i) => {
-    //     return(<p key={i} value={value}>Understanding: {value.understand}</p>)
-    // }),
-    // support: this.props.reduxState.feedbackReducer.map( (value, i) => {
-    //     return(<p key={i} value={value}>Support: {value.support}</p>)
-    // }),
-    // comment: this.props.reduxState.feedbackReducer.map( (value, i) => {
-    //     return(<p key={i} value={value}>Comments: {value.comment}</p>)
-    // })
+export default (withRouter(connect(putPropsOnReduxState)(withStyles()(Review))));

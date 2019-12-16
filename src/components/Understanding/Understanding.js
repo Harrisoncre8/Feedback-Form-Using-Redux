@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+// Material UI
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class Understanding extends Component {
 
@@ -37,19 +41,23 @@ class Understanding extends Component {
             <section>
                 <form onSubmit={this.goToSupport}>
                     <h2>How well are you understanding the content?</h2>
-                    <input
+                    <h3>1 - I'm totally lost <br/> 5 - I've got this</h3>
+                    <TextField
                         type='number' 
                         placeholder='Understanding?' 
                         max='5'
                         value={this.state.understand} 
                         onChange={(event)=>this.handleChange(event)} 
                     />
-                    <button type='submit'>Next</button>
+                    <br/>
+                    <br/>
+                    <Button variant="contained" color="primary" size="small" onClick={this.backToFeeling}>Back</Button>
+                    <>&nbsp;</>
+                    <Button variant="contained" color="primary" size="small" type='submit'>Next</Button>
                 </form>
-                <button onClick={this.backToFeeling}>Back</button>
             </section>
         );
     }
 }
 
-export default connect()(withRouter(Understanding));
+export default (withRouter(connect()(withStyles()(Understanding))));

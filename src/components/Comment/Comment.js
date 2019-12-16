@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+// Material UI
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class Comment extends Component {
 
@@ -33,18 +37,21 @@ class Comment extends Component {
             <section>
                 <form onSubmit={this.goToReview}>
                     <h2>Any comments you want to leave?</h2>
-                    <input
+                    <TextField
                         type='text' 
                         placeholder='Comments'
                         value={this.state.comment} 
                         onChange={(event)=>this.handleChange(event)} 
                     />
-                    <button type='submit'>Next</button>
+                    <br/>
+                    <br/>
+                    <Button variant="contained" color="primary" size="small" onClick={this.backToSupport}>Back</Button>
+                    <>&nbsp;</>
+                    <Button variant="contained" color="primary" size="small" type='submit'>Next</Button>
                 </form>
-                <button onClick={this.backToSupport}>Back</button>
             </section>
         );
     }
 }
 
-export default connect()(withRouter(Comment));
+export default  (withRouter(connect()(withStyles()(Comment))));
