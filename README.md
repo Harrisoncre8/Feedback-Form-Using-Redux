@@ -10,11 +10,17 @@ While learning react-redux, I was able to create an application that takes in a 
 
 ## Wireframe
 
+### Landing Page
 ![Screenshot 1](wireframes/image1.png)
+### Understanding Page
 ![Screenshot 1](wireframes/image2.png)
+### Support Page
 ![Screenshot 1](wireframes/image3.png)
+### Comment Page
 ![Screenshot 1](wireframes/image4.png)
+### Review Feedback Page
 ![Screenshot 1](wireframes/image5.png)
+### Admin Page
 ![Screenshot 1](wireframes/image6.png)
 
 ### Prerequisites
